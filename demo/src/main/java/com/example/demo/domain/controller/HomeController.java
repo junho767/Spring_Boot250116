@@ -1,8 +1,8 @@
 package com.example.demo.domain.controller;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,6 +15,9 @@ import java.util.Map;
 public class HomeController {
 
     private int age = 0;
+
+    @Autowired
+    private List<Integer> numList;
 
     @GetMapping("/")
     @ResponseBody
@@ -85,8 +88,9 @@ public class HomeController {
 
     @GetMapping("/list")
     @ResponseBody
-    public List<String> getList() {
-        return List.of("a", "b", "c");
+    public List<Integer> getList() {
+//        return List.of(1, 3, 5);
+        return numList;
     }
 
     @GetMapping("/map")
