@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@ResponseBody
 public class HomeController {
 
     private int age = 0;
@@ -102,6 +103,32 @@ public class HomeController {
                 .body("오늘은 목요일이다")
                 .isDeleted(false)
                 .build();
+    }
+
+    @GetMapping("/mapList")
+    public List<Map<String, String>> mapList() {
+        return List.of(
+                Map.of("k1","v1","k2","v2"),
+                Map.of("k4","v4","k3","v3")
+        );
+    }
+
+    @GetMapping("/articleList")
+    @ResponseBody
+    public List<Article> articleList() {
+        return List.of(
+                Article.builder()
+                        .title("제목")
+                        .body("오늘은 목요일이다")
+                        .isDeleted(false)
+                        .build(),
+                Article.builder()
+                        .title("제목")
+                        .body("내일은 금요일이다")
+                        .isDeleted(false)
+                        .build()
+        );
+
     }
 }
 
